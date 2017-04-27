@@ -15,7 +15,7 @@ class MainController extends Controller
 {
 
     /**
-     * @Route("/start", name="start")
+     * @Route("/", name="start")
      */
     public function indexAction(Request $request)
     {
