@@ -64,6 +64,8 @@ class MainController extends Controller
                     'message',
                     'Link name alredy exists!'
                 );
+
+                return $this->redirectToRoute('start');
             }else{
                 $newRecord = "INSERT INTO `links` (`old`, `new`, `createDate`) 
                 VALUES ('$old', '$new', '$date')";
