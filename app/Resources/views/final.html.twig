@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    <div id="container">
+       <h2>
+            Old URL:
+            <br>
+           <span id="links">{{ old }}</span>
+            <br><br>
+            Your new URL:<br>
+           <span id="links"> www.mywonlink.pl/{{ new }}</span>
+           <br>
+       </h2>
+
+        <h4>
+        <a href="/start" >Go back</a>
+        </h4>
+    </div>
+
+{% endblock %}

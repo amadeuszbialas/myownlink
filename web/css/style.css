@@ -1,0 +1,45 @@
+body{
+
+    background-image: url("../img/dark-mosaic.png");
+    background-color: black;
+    font-family: 'Gloria Hallelujah';
+
+}
+
+#container{
+    width: 600px;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+}
+
+#form{
+    font-size: 24px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn{
+    font-size: 24px;
+}
+
+#app_bundle_action_ugly{
+    font-size: 22px;
+}
+h4,h2{
+    color: white;
+    text-align: center;
+}
+
+#message{
+    color: red;
+    font-size: 32px;
+    font-weight: 700;
+}
+#links{
+    background-color: #FAEBD7;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+}

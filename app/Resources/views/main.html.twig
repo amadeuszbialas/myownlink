@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+    {% block head_javascripts %}
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+    {% endblock %}
+
+    {% block body %}
+        <div id="container">
+            {{ form_start(ActionForm) }}
+                <h4>Paste old URL here:</h4>
+                {{ form_row(ActionForm.old) }}
+                <h4>Your proposition for new URL:</h4>
+                {{ form_row(ActionForm.new) }}
+            <div class="g-recaptcha" data-sitekey="6Lek-RwUAAAAAM8p-pcUrIhAwRjPOAPQ6GsFaTkG"></div>
+                <br>
+                <button type="submit" class="btn btn-success" formnovalidate>Take new URL!</button>
+            {{ form_end(ActionForm) }}
+            <br><br>
+            <div id="message">
+                {% block messages %}
+                    {%  for msg in app.session.flashBag.get('message') %}
+                        {{ msg }}
+                    {% endfor %}
+                {% endblock %}
+            </div>
+        </div>
+    {% endblock %}
