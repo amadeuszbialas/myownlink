@@ -11,7 +11,7 @@
                 {{ form_row(ActionForm.old) }}
                 <h4>Your proposition for new URL:</h4>
                 {{ form_row(ActionForm.new) }}
-            <div class="g-recaptcha" data-sitekey="6Lek-RwUAAAAAM8p-pcUrIhAwRjPOAPQ6GsFaTkG"></div>
+            <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
                 <br>
                 <button type="submit" class="btn btn-success" formnovalidate>Take new URL!</button>
             {{ form_end(ActionForm) }}

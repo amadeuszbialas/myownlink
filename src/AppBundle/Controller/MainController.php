@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\PDOConnection\PDOConnection;
+use Symfony\Component\Yaml\Yaml;
+
 
 
 
@@ -22,6 +24,9 @@ class MainController extends Controller
         $ActionForm = $this->createForm(ActionForm::class);
         $ActionForm->handleRequest($request);
         $captcha = new Captcha();
+        $dir = __DIR__.'../../../../app/config/parameters.yml';
+        $parameters = Yaml::parse(file_get_contents($dir));
+        $site_key = $parameters['parameters']['recaptcha_site_key'];
 
         $pdo = new PDOConnection();
         $pdo = $pdo->getPDO();
@@ -59,17 +64,25 @@ class MainController extends Controller
             $result = $pdo->query("SELECT * FROM links WHERE new='".$new."'");
             $alredyExist= $result->fetch();
 
-            if($alredyExist !== false){
+            if($alredyExist !== false) {
                 $this->addFlash(
                     'message',
                     'Link name alredy exists!'
                 );
 
                 return $this->redirectToRoute('start');
+            }elseif($old == ''){
+                $this->addFlash(
+                'message',
+                    "The field 'old URL' can't be blank!"
+                );
+
+                return $this->redirectToRoute('start');
+
             }else{
                 $newRecord = "INSERT INTO `links` (`old`, `new`, `createDate`) 
                 VALUES ('$old', '$new', '$date')";
-    
+
                 $pdo->exec($newRecord);
 
             }
@@ -91,6 +104,7 @@ class MainController extends Controller
 
         return $this->render('/main.html.twig', [
             'ActionForm' => $ActionForm->createView(),
+            'site_key' => $site_key,
         ]);
     }
 
