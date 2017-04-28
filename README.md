@@ -5,15 +5,14 @@ www.myownlink.eu
 
 Installation:
 
-    1. Composer install
-    2. DB config in parameters.yml user, password, db name
-    3. DB requirements: 
+    1. Composer install(set your user, pass and name for DB)
+    2. DB requirements: 
                         database: 'myownlink'
                         table:    'links'
                         columns:  'old(text), new(text), createDate(date)'
-    4. You have to change site key and secret key for your own reCAPTCHA
+    3. You have to change site key and secret key for your own reCAPTCHA (keys in this repo are not working:p)
         site key -> app/Resources/views/main.html.twig
         secret key -> src/AppBundle/Captcha/Captcha.php
-    5. Delete twig cache folder.
+    4. Delete twig cache folder.
     
    
