@@ -91,7 +91,6 @@ class MainController extends Controller
 
         return $this->render('/main.html.twig', [
             'ActionForm' => $ActionForm->createView(),
-
         ]);
     }
 
