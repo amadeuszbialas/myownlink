@@ -12,9 +12,7 @@ class PDOConnection
 
     public function __construct()
     {
-        $dir = __DIR__;
-        $dir = substr($dir, 0, 24);
-        $dir .= 'app/config/parameters.yml';
+        $dir = __DIR__.'../../../../app/config/parameters.yml';
         $db_config = Yaml::parse(file_get_contents($dir));
 
         $this->dsn = 'mysql:host='.$db_config['parameters']['database_host'].';dbname='.$db_config['parameters']['database_name'];
