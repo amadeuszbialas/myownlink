@@ -10,9 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\PDOConnection\PDOConnection;
 use Symfony\Component\Yaml\Yaml;
 
-
-
-
 class MainController extends Controller
 {
 
@@ -39,6 +36,9 @@ class MainController extends Controller
             $new = $links['new'];
             $old = $links['old'];
             $date = date("Y-m-d");
+
+            $new = htmlentities($new, ENT_QUOTES, "UTF-8");
+            $old = htmlentities($old, ENT_QUOTES, "UTF-8");
 
             if(substr($old, 0,6) == 'https:'){
                 $old = substr($old,8);
@@ -80,10 +80,10 @@ class MainController extends Controller
                 return $this->redirectToRoute('start');
 
             }else{
-                $newRecord = "INSERT INTO `links` (`old`, `new`, `createDate`) 
-                VALUES ('$old', '$new', '$date')";
-
-                $pdo->exec($newRecord);
+                $pdo->exec(sprintf("INSERT INTO `links` (`old`, `new`, `createDate`) 
+                VALUES ('%s', '%s', '$date')",
+                mysqli_real_escape_string($pdo, $old),
+                mysqli_real_escape_string($pdo, $new)));
 
             }
 
@@ -136,7 +136,4 @@ class MainController extends Controller
         return $this->redirect('http://'.$old['old']);
 
     }
-
-
-
 }
