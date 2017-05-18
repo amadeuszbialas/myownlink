@@ -80,11 +80,9 @@ class MainController extends Controller
                 return $this->redirectToRoute('start');
 
             }else{
-                $pdo->exec(sprintf("INSERT INTO `links` (`old`, `new`, `createDate`) 
-                VALUES ('%s', '%s', '$date')",
-                mysqli_real_escape_string($pdo, $old),
-                mysqli_real_escape_string($pdo, $new)));
-
+                $stmt = $pdo->prepare("INSERT INTO `links` (`old`, `new`, `createDate`) 
+                VALUES (:old, :new, '$date')");
+                $stmt->execute([':old' => $old, ':new' => $new]);
             }
 
             return $this->redirectToRoute('final', [

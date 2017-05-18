@@ -10,6 +10,7 @@ Installation:
                         database: 'myownlink'
                         table:    'links'
                         columns:  'old(text), new(text), createDate(date)'
-    3. You have to set, site and secret keys for your own reCAPTCHA in parameters.yml
+    3. Change, site and secret keys for your own reCAPTCHA in parameters.yml
+    4. Change domain for your own (eg localhost) in /app/Resources/views/final line 14
     
    
